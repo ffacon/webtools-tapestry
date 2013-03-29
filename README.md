@@ -17,3 +17,7 @@ In order to install webtools-tapestry, use this update site:
 
 http://raw.github.com/wiki/got5/webtools-tapestry/webtools-tapestry-update-site/
 
+Next Features : 
+- AutoCompletion with Validators : When we write t:validate="", eclipse should propose validators available in the application. 
+
+
