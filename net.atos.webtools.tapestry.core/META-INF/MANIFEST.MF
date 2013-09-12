@@ -10,6 +10,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: https://github.com/awltech
 Export-Package: net.atos.webtools.tapestry.core,
  net.atos.webtools.tapestry.core.models,
+ net.atos.webtools.tapestry.core.models.assets,
  net.atos.webtools.tapestry.core.models.features,
  net.atos.webtools.tapestry.core.templates,
  net.atos.webtools.tapestry.core.templates.variables,

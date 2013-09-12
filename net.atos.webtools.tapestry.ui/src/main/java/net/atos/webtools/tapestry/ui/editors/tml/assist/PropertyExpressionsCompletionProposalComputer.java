@@ -35,8 +35,6 @@ import org.eclipse.wst.xml.ui.internal.contentassist.ContentAssistRequest;
  */
 @SuppressWarnings("restriction")
 public class PropertyExpressionsCompletionProposalComputer extends AbstractTapestryCompletionProposalComputer {
-	private static final String[] keywords = {ASSET_CONTEXT_BINDING, ASSET_CLASSPATH_BINDING, 
-			"true", "false", "this", "null"};
 	
 	@Override
 	public void sessionStarted() {
@@ -56,10 +54,13 @@ public class PropertyExpressionsCompletionProposalComputer extends AbstractTapes
 			
 			String wholeDocument = context.getDocument().get();
 			String alreadyTyped = getTypedBefore(wholeDocument, context.getInvocationOffset());
+
 			
 			//------------ PART-1 assets ----------------------
 			if(alreadyTyped != null && alreadyTyped.toLowerCase().startsWith(ASSET_BINDING + ":")){
-				//TODO: implement asset proposals
+
+				//tapestryFeatureModel.getProjectModel().
+				
 				return;
 			}
 			//------------ PART-2 field properties: with subsequent sub-properties after '.' or '.?' ----------------------
@@ -139,14 +140,10 @@ public class PropertyExpressionsCompletionProposalComputer extends AbstractTapes
 			}
 			
 			
-			//------------------ PART-3 messages & special keywords (no sub properties) -----------------------------------
+			//------------------ PART-3 messages (no sub properties) -----------------------------------
 			
 			List<JavaElement> peProposals= new ArrayList<JavaElement>();
 			peProposals.addAll(tapestryFeatureModel.getMessages());
-			
-			for (String keyword : keywords) {
-				peProposals.add(new JavaElement(keyword, ""));
-			}
 			
 			for(JavaElement peProposal: peProposals){
 				if(peProposal.getName() != null && peProposal.getName().toLowerCase().startsWith(alreadyTyped.toLowerCase().replace("${", ""))){
@@ -285,14 +282,11 @@ public class PropertyExpressionsCompletionProposalComputer extends AbstractTapes
 				TapestryUI.logWarning(UIErrorMessages.ERROR_WHILE_PROPOSING_PROPERTY_EXPRESSIONS, e);
 			}
 			
-			//------------------ PART-2 messages & special keywords (no sub properties) -----------------------------------
+			//------------------ PART-2 messages (no sub properties) -----------------------------------
 			List<JavaElement> propertiesList= new ArrayList<JavaElement>();
 			
 			for (JavaElement message : tapestryFeatureModel.getMessages()) {
 				propertiesList.add(message);
-			}
-			for (String keyword : keywords) {
-				propertiesList.add(new JavaElement(keyword, ""));
 			}
 			
 			for(JavaElement peProposal: propertiesList){
